@@ -217,7 +217,7 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   /usr/share/wayland-sessions/{,*.desktop} r,
   /usr/share/xml/iso-codes/{,**} r,
   @{system_share_dirs}/gnome-shell/{,**} r,
-
+ 
   / r,
   /.flatpak-info r,
   /etc/fstab r,
@@ -259,7 +259,8 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   owner @{HOME}/.var/app/**/ r,
   owner @{HOME}/@{XDG_SCREENSHOTS_DIR}/{,**} rw,
   owner @{HOME}/@{XDG_WALLPAPERS_DIR}/{,**} rw,
-
+  owner @{HOME}/.local/*/share/icons/* r
+ 
   owner @{user_games_dirs}/**.{png,jpg,svg} r,
   owner @{user_music_dirs}/**.{png,jpg,svg} r,
 
