@@ -188,6 +188,9 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   @{lib}/gio-launch-desktop                            rCx -> open,
   @{lib}/@{multiarch}/glib-[0-9]*/gio-launch-desktop   rCx -> open,
 
+  # NetworkManager OpenVPN auth dialog
+  @{lib}/nm-openvpn-auth-dialog ix,
+
   @{user_share_dirs}/gnome-shell/extensions/*/**       rPUx,
   /usr/share/gnome-shell/extensions/*/**               rPUx,
 
@@ -224,7 +227,7 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   /etc/xdg/menus/gnome-applications.menu r,
 
   /var/lib/AccountsService/icons/* r,
-
+  
   /var/lib/flatpak/app/**/gnome-shell/{,**} r,
   /var/lib/flatpak/appstream/**/icons/** r,
 
@@ -248,7 +251,7 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   owner @{gdm_share_dirs}/icc/ rw,
   owner @{gdm_share_dirs}/icc/edid-@{hex32}.icc rw,
   owner @{gdm_share_dirs}/icc/.goutputstream-@{rand6} rw,
-
+  
   owner @{HOME}/.face r,
   owner @{HOME}/.mozilla/firefox/firefox-mpris/{,*} r,
   owner @{HOME}/.tpm2_pkcs11/tpm2_pkcs11.sqlite3 rw,
@@ -404,7 +407,7 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
 
     network inet stream,
     network unix stream,
-
+   
     @{lib}/@{multiarch}/glib-[0-9]*/gio-launch-desktop      mr,
     @{lib}/gio-launch-desktop                               mr,
 
