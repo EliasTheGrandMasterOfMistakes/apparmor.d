@@ -23,6 +23,9 @@ profile df @{exec_path} {
   /**/ r,
 
   owner @{PROC}/@{pid}/mountinfo r,
+  
+  # For encrypted mapper
+  /dev/dm-0 r,
 
   include if exists <local/df>
 }
