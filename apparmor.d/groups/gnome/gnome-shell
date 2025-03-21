@@ -192,6 +192,7 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   /usr/share/**/icons/{,**} r,
   /usr/share/backgrounds/{,**} r,
   /usr/share/byobu/desktop/byobu* r,
+  /usr/share/color/icc/colord/{,**} rw,
   /usr/share/dconf/profile/gdm r,
   /usr/share/desktop-directories/{,*.directory} r,
   /usr/share/gdm/BuiltInSessions/{,*.desktop} r,
@@ -269,7 +270,6 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   owner @{user_share_dirs}/icc/ rw,
   owner @{user_share_dirs}/icc/.goutputstream-@{rand6} rw,
   owner @{user_share_dirs}/icc/edid-@{hex32}.icc rw,
-  owner @{user_share_dirs}/color/icc/colord/{,**} rw,
   owner @{user_share_dirs}/icons/{,**} rw,
 
 
