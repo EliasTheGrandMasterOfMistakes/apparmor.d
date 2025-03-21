@@ -269,6 +269,8 @@ profile gnome-shell @{exec_path} flags=(attach_disconnected,mediate_deleted) {
   owner @{user_share_dirs}/icc/ rw,
   owner @{user_share_dirs}/icc/.goutputstream-@{rand6} rw,
   owner @{user_share_dirs}/icc/edid-@{hex32}.icc rw,
+  owner @{user_share_dirs}/icons/ rw,
+
 
   owner @{user_share_dirs}/applications/org.gnome.Shell.Extensions.GSConnect{,.Preferences}.desktop rw,
   owner @{user_share_dirs}/applications/org.gnome.Shell.Extensions.GSConnect{,.Preferences}.desktop.@{rand6} w,
