@@ -72,11 +72,6 @@ profile NetworkManager @{exec_path} flags=(attach_disconnected) {
        member=InterfacesAdded
        peer=(name=org.freedesktop.DBus, label=nm-online),
 
-  dbus send bus=system path=/org/freedesktop/DBus
-       interface=org.freedesktop.DBus
-       member={GetConnectionUnixUser,GetConnectionUnixProcessID}
-       peer=(name=org.freedesktop.DBus, label="@{p_dbus_system}"),
-
   @{exec_path} mr,
 
   @{sh_path}        rix,
@@ -109,6 +104,7 @@ profile NetworkManager @{exec_path} flags=(attach_disconnected) {
   /etc/network/interfaces.d/{,*} r,
   /etc/NetworkManager/{,**} r,
   /etc/NetworkManager/system-connections/{,**} w,
+  @{etc_rw}/netplan/90-NM-@{uuid}.yaml w,
   @{etc_rw}/resolv.conf rw,
   @{etc_rw}/resolv.conf.[0-9A-Z]* rw,
 
