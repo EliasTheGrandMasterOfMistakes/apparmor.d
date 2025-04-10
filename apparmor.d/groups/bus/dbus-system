@@ -16,7 +16,7 @@ include <tunables/global>
 profile dbus-system flags=(attach_disconnected) {
   include <abstractions/base>
   include <abstractions/bus-system>
-  include <abstractions/attached/consoles>
+  include <abstractions/consoles>
   include <abstractions/deny-sensitive-home>
   include <abstractions/nameservice-strict>
 
@@ -31,13 +31,18 @@ profile dbus-system flags=(attach_disconnected) {
   network bluetooth stream,
   network bluetooth seqpacket,
 
-  ptrace (read) peer=@{p_systemd},
+  ptrace read peer=@{p_systemd},
 
   #aa:dbus own bus=system name=org.freedesktop.DBus path=/{,org/freedesktop/DBus}
   dbus receive bus=system path=/org/freedesktop/DBus
        interface=org.freedesktop.DBus
        member=Hello
        peer=(name=@{busname}),
+
+  dbus receive bus=system path=/org/freedesktop/systemd1
+       interface=org.freedesktop.systemd1.Activator
+       member=ActivationFailure
+       peer=(name=@{busname}, label="@{p_systemd}"),
 
   @{exec_path} mrix,
 

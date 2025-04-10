@@ -43,7 +43,7 @@ func filterRuleForUs(opt *Option) bool {
 	if slices.Contains(opt.ArgList, abiStr) {
 		return true
 	}
-	versionStr := fmt.Sprintf("apparmor%s", prebuild.Version)
+	versionStr := fmt.Sprintf("apparmor%.1f", prebuild.Version)
 	if slices.Contains(opt.ArgList, versionStr) {
 		return true
 	}
@@ -59,7 +59,7 @@ func filter(only bool, opt *Option, profile string) (string, error) {
 	}
 
 	if opt.IsInline() {
-		profile = strings.Replace(profile, opt.Raw, "", -1)
+		profile = strings.ReplaceAll(profile, opt.Raw, "")
 	} else {
 		regRemoveParagraph := regexp.MustCompile(`(?s)` + opt.Raw + `\n.*?\n\n`)
 		profile = regRemoveParagraph.ReplaceAllString(profile, "")

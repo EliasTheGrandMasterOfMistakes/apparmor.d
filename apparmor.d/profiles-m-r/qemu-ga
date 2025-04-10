@@ -22,15 +22,19 @@ profile qemu-ga @{exec_path} {
   @{sys}/devices/system/node/ r,
   @{sys}/devices/system/node/node@{int}/meminfo r,
 
+  @{PROC}/sys/vm/max_map_count r,
+
   /dev/vport@{int}p@{int} rw,
 
   profile systemctl {
     include <abstractions/base>
     include <abstractions/app/systemctl>
 
+    capability net_admin,
+
     unix type=stream addr=@@{udbus}/bus/shutdown/system,
 
-    #aa-dbus talk bus=system name=org.freedesktop.login1 label=systemd-logind
+    #aa:dbus talk bus=system name=org.freedesktop.login1 label=systemd-logind
 
     include if exists <local/qemu-ga_systemctl>
   }

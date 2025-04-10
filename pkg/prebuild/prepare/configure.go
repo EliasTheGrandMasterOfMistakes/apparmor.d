@@ -7,7 +7,6 @@ package prepare
 import (
 	"fmt"
 
-	"github.com/roddhjav/apparmor.d/pkg/paths"
 	"github.com/roddhjav/apparmor.d/pkg/prebuild"
 )
 
@@ -35,8 +34,8 @@ func (p Configure) Apply() ([]string, error) {
 			return res, err
 		}
 
-		if prebuild.ABI == 3 {
-			if err := paths.CopyTo(prebuild.DistDir.Join("ubuntu"), prebuild.RootApparmord); err != nil {
+		if prebuild.Version < 3.0 {
+			if err := prebuild.DistDir.Join("ubuntu").CopyFS(prebuild.RootApparmord); err != nil {
 				return res, err
 			}
 		}
@@ -46,9 +45,11 @@ func (p Configure) Apply() ([]string, error) {
 			return res, err
 		}
 
-		// Copy Debian specific abstractions
-		if err := paths.CopyTo(prebuild.DistDir.Join("ubuntu"), prebuild.RootApparmord); err != nil {
-			return res, err
+		if prebuild.Version < 4.1 {
+			// Copy Debian specific abstractions
+			if err := prebuild.DistDir.Join("ubuntu").CopyFS(prebuild.RootApparmord); err != nil {
+				return res, err
+			}
 		}
 
 	default:
@@ -56,7 +57,7 @@ func (p Configure) Apply() ([]string, error) {
 
 	}
 
-	if prebuild.Version == "4.1" {
+	if prebuild.Version == 4.1 {
 		// Remove files upstreamed in 4.1
 		remove := []string{
 			"abstractions/devices-usb-read",
