@@ -75,6 +75,8 @@ cups-notifier-rss complain
 cups-pk-helper-mechanism complain
 cupsd attach_disconnected,complain
 ddcutil complain
+deb-systemd-helper complain
+deb-systemd-invoke complain
 dino attach_disconnected,complain
 discord complain
 discord-chrome-sandbox complain
@@ -84,6 +86,10 @@ dmsetup complain
 dockerd attach_disconnected,complain
 dolphin complain
 downloadhelper complain
+dpkg-maintscript-helper complain
+dpkg-script-apparmor complain
+dpkg-script-man complain
+dpkg-script-udev complain
 drkonqi complain
 drkonqi-coredump-cleanup complain
 drkonqi-coredump-processor complain
@@ -352,7 +358,13 @@ telegram-desktop complain
 totem attach_disconnected,complain
 tracker-writeback complain
 ucf complain
+udev-ata_id complain
+udev-bcache-export-cached complain
+udev-cdrom_id complain
 udev-dmi-memory-id complain
+udev-fido_id complain
+udev-hdparm complain
+udev-probe-bcache complain
 udisksctl complain
 udisksd attach_disconnected,complain
 ufw complain
